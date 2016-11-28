@@ -1,3 +1,9 @@
+# compiler output
+*.o
+*.exe
+*.depend
+*.layout
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
