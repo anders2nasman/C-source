@@ -1,0 +1,15 @@
+#include <stdio.h>
+#define NUMBER 7.0
+
+int main(void)
+{
+    puts("Hello world!\n");
+    {
+        int i;
+        i=NUMBER;
+        i++;
+
+        main_cn();
+    }
+    return(0);
+}
