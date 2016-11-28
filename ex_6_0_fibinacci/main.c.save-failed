@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+unsigned  int fib(unsigned int x)
+{
+    int i=0;
+    unsigned int n[2]= {1,1}, sum;
+    for (i=1; i<=x; i++)
+    {
+        sum=n[0]+n[1];
+        n[0]=n[1];
+        n[1]=sum;
+    }
+    return( sum );
+
+}
+int main()
+{
+    int i;
+    printf("Fibonacci!\n");
+
+    for (i=0; i<100; i++)
+    {
+        printf("fib(%d) = %u",i,fib(i));
+    }
+
+    return 0;
+}

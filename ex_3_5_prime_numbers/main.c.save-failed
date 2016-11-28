@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int x,a,c,i=0;
+    char s[500],t[200];
+    //printf(">");
+    //scan("%d",&a);
+    for (a=1; a<200; a++)
+    {
+        //printf("divisors ");
+        sprintf(s,"%c",'\0'); // clear temporary string
+        x=factorize(a);
+        for (i=1,c=0; i<=a; i++)
+        {
+            if ( (a % i) == 0 )
+            {
+                c++;
+                //printf("%d ",i);
+                sprintf(t,"%d ",i);
+                strcat(s,t);
+            }
+        }
+        //printf("\t\t");
+        if ( c == 2 )  // should check that it is 1 and itself
+        {
+            printf("%d is a prime, divisable with 1 and itself only \n",a);
+            printf("\tdivisors %s\n",s);
+        }
+        else if ( c == 1 )
+        {
+            printf("%d is no longer a prime \n",a);
+            printf("\tdivisors %s\n",s);
+        }
+        else
+        {
+            printf("%d is not a prime number \n",a);
+            printf("\tdivisors %s\n",s);
+        }
+
+    }
+
+
+    return 0;
+}

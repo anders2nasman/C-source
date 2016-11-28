@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define bstr(x) ((x)?"true":"efal")
+#define bchar(x) ((x)?'T':'F')
+
+int main()
+{
+_10:    0; int a,k  = 0;
+_20:    for ( k=0; k<=255; k++ )
+    {
+_30:
+        a = k ^ 0x55; // xor
+        a = k & 0x55;
+
+        printf("%02x %02x\t",k,a);
+        if ( k+1 % 8 == 0 ) printf("\n");
+    }
+
+    return 0;
+}
+
+/**
+
+rad1 : int a=0;
+rad2 : a=a+2;
+rad3 : printf("%d",a);
+
+**/
+

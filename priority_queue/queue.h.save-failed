@@ -1,0 +1,24 @@
+#include "queue.h"
+
+void queue_init(QUEUE *q)
+{
+    memset(q,0,sizeof(QUEUE));
+}
+
+int queue_enqueue(QUEUE *q,int item)
+{
+
+}
+
+int queue_dequeue(QUEUE *q,int *item)
+{
+
+}
+
+void queue_print(QUEUE *q)
+{
+
+}
+
+
+

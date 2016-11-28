@@ -1,0 +1,45 @@
+
+Utgå ifrån skalet från circular queue, men implementera en prioriterad kö istället, som alltid plockar ut det minsta av alla element.
+
+Gör om testfallen att visa att det minsta elementet plockas ut.
+
+facit
+----------
+failed          succeeded
+succeeded       failed
+succeeded       succeeded
+succeeded       succeeded
+succeeded       succeeded
+succeeded       succeeded
+succeeded       succeeded
+succeeded       succeeded
+succeeded       succeeded
+failed          succeeded
+12345678        9234567
+succeeded       failed
+succeeded       failed
+succeeded       failed
+45678           9234567
+succeeded       succeeded
+456780          90345678
+
+
+failed
+succeeded
+succeeded
+succeeded
+succeeded
+succeeded
+succeeded
+succeeded
+succeeded
+failed
+123456781
+succeeded
+succeeded
+succeeded
+456
+succeeded
+4567
+
+Process returned 0 (0x0)

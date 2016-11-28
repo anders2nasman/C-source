@@ -1,0 +1,55 @@
+#ifndef BYTECODE_H_INCLUDED
+#define BYTECODE_H_INCLUDED
+// bytecode.h
+
+typedef int (*virtual_func)(PRM*);
+typedef int (*compile_func)(PRM*);
+//typedef int (*funptr)(int,int);
+
+typedef struct _BYTECODE_LUT
+{
+    unsigned short int n;
+    virtual_func vf;
+    char *mnem;
+} BYTECODE_LUT;
+
+
+
+typedef struct _VMPROC
+{
+    unsigned int pc;
+    unsigned int sp;
+    unsigned int r1;
+    unsigned int r2;
+    unsigned int r3;
+    unsigned int r4;
+    unsigned int r5;
+    double  d1;
+    double  d2;
+    double  d3;
+
+
+} VMPROC;
+
+typedef struct _PRM
+{
+    int p1;
+    int p2;
+    int p3; // extend with other types and union
+
+} PRM;
+
+/*
+typedef struct _PRM
+{
+        unsigned int p1;
+        unsigned int p2;
+        unsigned int p3;
+        unsigned int p4; // ref, obj, float, etc. union
+} PRM;
+*/
+
+
+
+
+#endif
