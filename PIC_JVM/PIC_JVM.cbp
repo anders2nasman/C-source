@@ -31,6 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="bytecode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bytecode.h" />
+		<Unit filename="jvm.h" />
+		<Unit filename="jvm.txt" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
