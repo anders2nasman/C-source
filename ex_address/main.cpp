@@ -1,18 +1,21 @@
+// title: excersise vector of students
+// revision:
+//  2016-12-01 Anders, created
+
 #include <iostream>
 #include <vector>
 #include <string>
 
 using namespace std;
 
+// define a structure for a student, including a vector of course names
 typedef struct _STUDENT
 {
     string name;
     vector<string> course;
 } student_t;
 
-vector<student_t> students(1); // well, just have a work item
-
-string buffer;
+// define states for an input state machine
 typedef enum STATE_T { a_idle=0, a_class=1, a_student=2, a_name=3,
                        a_course=4, a_done=5
                      } state_t;
@@ -24,6 +27,9 @@ state_t state = a_idle;
 
 int main()
 {
+    vector<student_t> students(1); // well, just have a work item
+
+    string buffer;
     unsigned int i,j;
 
 
@@ -48,6 +54,8 @@ int main()
             if ( !students[0].name.empty() )
             {
                 students.push_back( students[0] );
+                // create a new empty element, not efficient
+                //students.insert(students.begin(),1,student);
             }
             students[0].name="";
             students[0].course.clear();
