@@ -74,8 +74,9 @@ int main()
 
     }
 
+    students.erase(students.begin());
     //students.erase(students.begin(),students.end());
-    students.erase(students.begin(),students.begin());
+   // students.erase(students.begin(),students.begin()+1);
 
 
     cout << "Students" << endl;
