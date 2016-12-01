@@ -1,0 +1,22 @@
+<class>
+<student>
+    <name>Harry Belafonte</name>
+    <course>Math</course>
+    <course>Music</course>
+    <course>Singing</course>
+</student>
+
+<student>
+    <name>Cindy Lauper</name>
+    <course>Social Science</course>
+    <course>Singing</course>
+</student>
+
+<student>
+    <name>Robert Zimmermann</name>
+    <course>Global Politics</course>
+    <course>Guitar</course>
+    <course>Singing</course>
+</student>
+</class>
+
