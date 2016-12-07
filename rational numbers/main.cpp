@@ -10,12 +10,16 @@
 #include <exception>
 #include <typeinfo>
 #include <vector>
+#include <cmath>
 
 #define SSTR( x ) static_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
 
 #define INVALID_RATIONAL -1
 #define DIVISION_BY_ZERO -89
+
+#define EXPECT( result, expected, message ) \
+    cout <<"result="<<result.stringOf()<<" expected= "<<expected.stringOf()<<((result==expected)?" - OK":" - FAILED")<<endl;
 
 using namespace std;
 
@@ -40,11 +44,17 @@ public:
     //rational operator=(rational& r) { this->assign(r.numerator,r.denominator); return *this; }
     //rational operator=(rational r) { this->assign(r->numerator,r->denominator); return this; }
     //rational operator=(const rational& r) { this->numerator=r.numerator; this->denominator=r.denominator; return *this; }
+    bool operator==(rational& r) { // const? no we should simplify
+            this->simplify();
+            r.simplify();
+            return this->numerator==r.numerator && this->denominator==r.denominator;
+    }
 
     //rational operator=(rational r){this=r;}
     //throw invalid_argument("rational::rational:: invalid denominator 0");
     float valueOf();
    // rational operator+(int n) { numerator+=n; return this; }
+    rational operator++(int dummy) { this->numerator++; return *this; }
     rational operator+(rational n) { rational r=*this; r.numerator+=n.numerator; r.denominator+=n.denominator; return r; }
     rational operator-(rational n) { rational r=*this; r.numerator-=n.numerator; r.denominator-=n.denominator; return r; }
     rational operator*(rational n) { rational r=*this; r.numerator*=n.numerator; r.denominator*=n.denominator; return r; }
@@ -57,7 +67,7 @@ public:
 
 };
 
-
+//-------------------------------------------------------------------- gcd()
 int gcd(int m, int n)
 {
         int tmp;
@@ -67,20 +77,22 @@ int gcd(int m, int n)
         return n;
 }
 
+//-------------------------------------------------------------------- lcm()
 int lcm(int m, int n)
 {
         return m / gcd(m, n) * n;
 }
 
+//-------------------------------------------------------------------- simplify()
 void rational::simplify() // to be private
 {
+    if ( denominator<0 ) { numerator=-numerator; denominator=-denominator; }
+    if ( numerator == 0) { denominator=1; }
+    if ( denominator == 0) { throw INVALID_RATIONAL; }
     int d = gcd( numerator, denominator );
 cout <<"rational::simplify: gcd = "<<d<<endl;
     numerator /= d;
     denominator /= d;
-    if ( denominator<0 ) { numerator=-numerator; denominator=-denominator; }
-    if ( numerator == 0) { denominator=1; }
-    if ( denominator == 0) { throw INVALID_RATIONAL; }
 }
 
 int rational::greatestCommonDenominator(rational n) // greatest common denominator
@@ -147,16 +159,24 @@ int main()
     //while (1) {
     try {
 
-    rational r,r1(16,8),r2(3,2);
-    r  = r1;
+    rational r,r1(-16,8),r2(3,2),test;
+    r  = r1++;
+
+    EXPECT( r1, r, "r assignment = " )
 
     cout << "r = " << r.stringOf() << endl;
     cout << "r1 = " << r1.stringOf() << endl;
+
+    r1.assign( INT_MAX-1,INT_MAX-1 );
     r1.simplify();
     cout << "simplify r1 = " << r1.stringOf() << endl;
 
+    EXPECT( r1, test.assign(-15,8), "r assignment = " )
+
     r1.assign(352,64); r1.simplify();
     cout << "simplify r1 = " << r1.stringOf() << endl;
+
+    EXPECT( r1, test.assign(11,2), "r assignment = " )
 
     rational a(1,3),b(4,5),c(7,15),d(0,1),e(999,0);
     rational f(1,4),g(1,5),h(7,15),i,j(999,0);
